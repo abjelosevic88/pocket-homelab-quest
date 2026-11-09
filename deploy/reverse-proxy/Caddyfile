@@ -1,0 +1,4 @@
+# Pocket Quest behind Caddy.
+quest.example.com {
+	reverse_proxy pocket-quest:8080
+}

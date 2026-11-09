@@ -1,0 +1,22 @@
+{
+  "name": "Pocket Quest",
+  "short_name": "Quest",
+  "description": "Run tabletop role-playing games (fifth edition): character sheets, campaigns and game nights, encounters and the initiative tracker, dice, and the rules built in.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#9f1d35",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "shortcuts": [
+    { "name": "The table", "url": "/" },
+    { "name": "Characters", "url": "/characters" },
+    { "name": "Encounters", "url": "/encounters" },
+    { "name": "Dice", "url": "/dice" }
+  ]
+}

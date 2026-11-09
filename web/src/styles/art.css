@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Pocket Quest — artwork (components/Art.tsx): dice colours, tumble, tokens
+   ========================================================================== */
+
+.art-glyph, .art-crest, .art-die, .art-token, .art-seal { display: inline-block; flex-shrink: 0; vertical-align: middle; overflow: visible; }
+
+/* ---------- dice: ivory/bone in light, deep slate in dark ---------- */
+.die {
+  --die-a: #fffaf0; --die-b: #f1e6cf; --die-c: #cbb791; --die-ink: #2b1d12; --die-edge: #7a6748;
+  filter: drop-shadow(0 1px 1.5px rgba(40, 28, 12, .22));
+}
+@media (prefers-color-scheme: dark) {
+  .die { --die-a: #5d6679; --die-b: #434b5c; --die-c: #2c313d; --die-ink: #f4ead4; --die-edge: #0a0b0f; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5)); }
+}
+[data-theme="dark"] .die { --die-a: #5d6679; --die-b: #434b5c; --die-c: #2c313d; --die-ink: #f4ead4; --die-edge: #0a0b0f; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5)); }
+[data-theme="light"] .die { --die-a: #fffaf0; --die-b: #f1e6cf; --die-c: #cbb791; --die-ink: #2b1d12; --die-edge: #7a6748; filter: drop-shadow(0 1px 1.5px rgba(40, 28, 12, .22)); }
+
+.die.tone-accent { --die-a: #cf4459; --die-b: #a3203a; --die-c: #6c1024; --die-ink: #fff3e4; --die-edge: #43060f; }
+.die.tone-crit { --die-a: #fbe39a; --die-b: #e0b049; --die-c: #a8761c; --die-ink: #3b2504; --die-edge: #6a470c; filter: drop-shadow(0 0 5px rgba(240, 186, 60, .7)) drop-shadow(0 0 1.5px rgba(255, 220, 120, .9)); }
+.die.tone-fumble { --die-a: #6f5659; --die-b: #4e3437; --die-c: #2e1d20; --die-ink: #f3c5c5; --die-edge: #140a0b; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .die.is-rolling { animation: art-tumble .6s cubic-bezier(.3, .7, .3, 1); transform-origin: 50% 50%; }
+  @keyframes art-tumble {
+    0% { transform: rotate(0) scale(1); }
+    25% { transform: rotate(-160deg) scale(.86); }
+    55% { transform: rotate(-300deg) scale(1.1); }
+    80% { transform: rotate(-350deg) scale(.98); }
+    100% { transform: rotate(-360deg) scale(1); }
+  }
+}
+
+/* ---------- tokens ---------- */
+.art-token { color: var(--text, #17171c); }
+.art-token.is-down { filter: saturate(.35) brightness(.92); }
+.art-token.is-dead { filter: grayscale(1) brightness(.9); }
+@media (prefers-reduced-motion: no-preference) {
+  .art-token { transition: transform .16s var(--ease, ease), filter .16s; }
+  .art-token.lift:hover, a:hover > .art-token, button:hover > .art-token { transform: translateY(-2px); }
+}
+
+/* ---------- helpers ---------- */
+.art-muted { color: var(--muted); }
+.art-accent { color: var(--accent); }
+.art-gold { color: #b8892e; }
+.art-crest { filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .18)); }
+.art-seal { filter: drop-shadow(0 1px 1px rgba(60, 0, 10, .25)); }
+.art-empty { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; color: var(--muted); }

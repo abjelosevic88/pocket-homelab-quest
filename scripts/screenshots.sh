@@ -14,8 +14,9 @@ shot() { # name path width height [dark]
     --virtual-time-budget=6000 --screenshot="/out/$1.png" --window-size="$3,$4" "$BASE$2" >/dev/null 2>&1
   echo "$1"
 }
-TOKEN=$(curl -fsS "$BASE/api/v1/campaigns" | sed -n 's/.*"share_token":"\([^"]*\)".*/\1/p' | head -1)
-FIGHT=$(curl -fsS "$BASE/api/v1/home" | sed -n 's/.*"fight":{"id":\([0-9]*\).*/\1/p')
+# the share link of a campaign whose players' page is on
+TOKEN=$(curl -fsS "$BASE/api/v1/campaigns" | python3 -c 'import json,sys; print(next(c["share_token"] for c in json.load(sys.stdin)["campaigns"] if c["share_on"]))')
+FIGHT=$(curl -fsS "$BASE/api/v1/home" | python3 -c 'import json,sys; print(json.load(sys.stdin)["fight"]["id"])')
 shot desktop-table / 1440 1000
 shot desktop-sheet /characters/2 1440 1000
 shot desktop-sheet-dark /characters/1 1440 1000 dark

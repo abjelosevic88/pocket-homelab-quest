@@ -20,13 +20,13 @@ FIGHT=$(curl -fsS "$BASE/api/v1/home" | python3 -c 'import json,sys; print(json.
 shot desktop-table / 1440 1000
 shot desktop-sheet /characters/2 1440 1000
 shot desktop-sheet-dark /characters/1 1440 1000 dark
-shot desktop-fight "/encounters/$FIGHT" 1440 1000
+shot desktop-tracker "/encounters/$FIGHT" 1440 1000
 shot desktop-campaign /campaigns/1 1440 1000
 shot desktop-monster /compendium/monsters/srd%3Aadult-red-dragon 1440 1400
 shot desktop-builder /characters/new 1440 900
 shot desktop-encounter /encounters/1 1440 900
-shot desktop-player "/p/$TOKEN" 1100 1200
+shot desktop-players-page "/p/$TOKEN" 1100 1200
 shot phone-table / 390 844
 shot phone-sheet /characters/3 390 844
-shot phone-fight "/encounters/$FIGHT" 390 844
+shot phone-tracker "/encounters/$FIGHT" 390 844
 shot phone-dice /dice 390 844

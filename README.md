@@ -15,7 +15,7 @@
 <table>
   <tr>
     <td width="50%"><img src="docs/screenshots/desktop-sheet.png" alt="A character sheet"></td>
-    <td width="50%"><img src="docs/screenshots/desktop-fight.png" alt="The initiative tracker"></td>
+    <td width="50%"><img src="docs/screenshots/desktop-tracker.png" alt="The initiative tracker"></td>
   </tr>
   <tr>
     <td align="center"><sub>A character sheet: every number worked out by the rules, every number a roll.</sub></td>
@@ -31,7 +31,7 @@
   </tr>
   <tr>
     <td width="50%"><img src="docs/screenshots/desktop-campaign.png" alt="A campaign"></td>
-    <td width="50%"><img src="docs/screenshots/desktop-player.png" alt="The players' page"></td>
+    <td width="50%"><img src="docs/screenshots/desktop-players-page.png" alt="The players' page"></td>
   </tr>
   <tr>
     <td align="center"><sub>A campaign: what the players know and your secrets, the last game night, the party, quests, pinned people and places.</sub></td>
@@ -50,7 +50,7 @@
 <p align="center">
   <img src="docs/screenshots/phone-table.png" width="200" alt="The table on a phone">
   <img src="docs/screenshots/phone-sheet.png" width="200" alt="A sheet on a phone">
-  <img src="docs/screenshots/phone-fight.png" width="200" alt="The fight on a phone">
+  <img src="docs/screenshots/phone-tracker.png" width="200" alt="The fight on a phone">
   <img src="docs/screenshots/phone-dice.png" width="200" alt="Dice on a phone">
 </p>
 

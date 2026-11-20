@@ -440,5 +440,10 @@ func (s *Server) importPocket(ctx context.Context, uid int64, doc exportDoc) (ma
 		remember("encounter", old, at, e.ID)
 		added["encounters"]++
 	}
-	return map[string]any{"ok": true, "added": added}, nil
+	out := map[string]any{"ok": true, "added": added}
+	// the counts at the top level too (what Pocket Move shows), 0 when nothing came in
+	for _, k := range []string{"photos", "campaigns", "characters", "sessions", "codex", "quests", "encounters", "creatures"} {
+		out[k] = added[k]
+	}
+	return out, nil
 }

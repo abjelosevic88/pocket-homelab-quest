@@ -84,3 +84,5 @@ Events on the Core bus: `quest.session_planned`, `quest.session_played`, `quest.
 ## Data
 
 `GET /export.json` (`?photos=0` without pictures) · `GET /export.csv?what=characters|sessions` · `POST /import` (a Pocket Quest export; again and again, nothing is doubled) · `GET /backup` (admins: the whole database).
+
+Pocket Move can copy your campaigns, characters and game nights out and bring them in: `GET /pocket/portable` describes the exports (link scope `move:export`) and the import (`move:import`). The import answers its counts under `added` and at the top level.

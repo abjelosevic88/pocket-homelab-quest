@@ -211,12 +211,14 @@ func (s *Server) registerWithCore(ctx context.Context) error {
 	m := core.Manifest{
 		Slug: "quest", Name: "Pocket Quest",
 		Description: "Run tabletop role-playing games (fifth edition, 5E compatible): character sheets with a step-by-step builder and levelling up, campaigns with game nights, recaps, people, places, lore and a quest log, an encounter builder with the official difficulty budget, an initiative and hit-point tracker for the fight, a dice roller, and the whole System Reference Document (monsters, spells, items, rules) built in. Players get a link with what they may see. Puts game nights on Pocket Calendar, recaps in Pocket Notes, news in the party's Pocket Chat and prep in Pocket Tasks; Pocket AI writes recaps, NPCs, backstories and read-aloud text.",
-		Icon:        "/favicon.svg", Version: Version,
+		Icon:        "/favicon.svg", Category: "Media", Version: Version,
 		URL: s.cfg.CoreAppURL, PublicURL: s.cfg.BaseURL, HealthPath: "/healthz", EnvPrefix: "QUEST",
 		Publishes: eventTopics,
 		Offers:    linkOffers,
 		Uses:      append(linkUses(), core.InferenceUse()),
 		Portable:  portable,
+
+		Capabilities: capabilities,
 	}
 	if s.cfg.BaseURL != "" {
 		m.OIDC = &core.OIDCRequest{RedirectURIs: []string{s.oidcCallbackURL()}}

@@ -79,6 +79,16 @@ Everything the web app does goes through this JSON API at `/api/v1`. Sign in wit
 
 With a `pcx_` token from Pocket Core another app reaches only: `quest:read` — `GET summary, home, search, campaigns, sessions, characters, quests, encounters, rolls, names, day/{date}`, `GET sessions/{id}, characters/{id}, encounters/{id}`, `GET srd/monsters|spells|magic-items` (campaign secrets and quest secrets are blanked); `quest:write` — `POST sessions, codex, quests, rolls`, `PUT/DELETE` of the game nights, entries and quests it added itself, `POST characters/{id}/hp`.
 
+Pocket Search, Pocket Day and Pocket Hub read Quest the way they read every Pocket app, each with its own link scope that opens only its one route (Pocket Core's capabilities; nothing is changed, no secret is shown):
+
+| Call | Scope | What it is |
+|---|---|---|
+| `GET /pocket/search?q=&limit=` | `pocket:search` | Your campaigns, characters, game nights, codex entries, quests and encounters (a name with the words first), then monsters, spells, items, conditions and rules |
+| `GET /pocket/day/YYYY-MM-DD` | `pocket:day` | The game nights played or planned that day (called-off ones left out): time, campaign, who came, the recap |
+| `GET /pocket/widget` | `pocket:widget` | The next game night with its campaign, then the characters who came to the last game nights |
+
+Nothing can be kept from a quick line (no `pocket:capture`): a game night needs a campaign, a day and a time.
+
 Events on the Core bus: `quest.session_planned`, `quest.session_played`, `quest.character_created`, `quest.character_leveled`, `quest.encounter_finished`, `quest.quest_completed`.
 
 ## Data

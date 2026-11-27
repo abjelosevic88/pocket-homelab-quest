@@ -14,7 +14,7 @@ import (
 // Pocket Core app links (docs/links.md in pocket-homelab-core), Quest as
 // the target: another Pocket app the person allowed in Core may act here for
 // them with a pcx_ token, only within these scopes. Every route not listed
-// in linkRoutes stays closed to it (403).
+// in linkRoutes, portable or capabilities stays closed to it (403).
 
 var linkOffers = []core.Offer{
 	{Scope: "quest:read", Name: "See your games", Description: "Read your campaigns, game nights (planned and played, with their recaps), characters (level, hit points, armour class), the quest log, encounters and the rules content — for your journal, your calendar, search and Pocket AI. Never the game master's secrets."},
@@ -31,6 +31,20 @@ var portable = &core.Portable{
 	Imports: []core.PortableImport{
 		{Path: "/api/v1/import", Kind: core.KindPocket, Form: "file", MaxBytes: 512 << 20, Title: "Adds the campaigns, characters, game nights and the rest from another box; what you already have is left alone"},
 	},
+}
+
+// capabilities are what Pocket Search, Pocket Day and Pocket Hub may ask
+// Quest (docs/capabilities.md in pocket-homelab-core); Register adds the
+// pocket:* offers. The routes are in capabilities.go. Nothing can be kept
+// here from a quick line: a game night needs a campaign, a day and a time.
+var capabilities = core.Capabilities{
+	Search: &core.Searchable{What: "Your characters, campaigns, game nights, codex, quests and encounters, then monsters, spells and items from the rules",
+		Kinds: []string{"character", "campaign", "game night", "person", "place", "faction", "item", "lore", "handout", "quest", "encounter",
+			"monster", "spell", "magic item", "equipment", "condition", "rule"},
+		Bangs: []string{"quest", "dnd", "rpg"}},
+	Day: &core.DayFeed{Label: "Quest", One: "game night", Many: "game nights", Unit: "count",
+		What: "The game nights you played or planned that day, with the campaign and who came"},
+	Widget: &core.Widget{Title: "Next game", What: "The next game night with its campaign, then the characters who played last"},
 }
 
 type linkRoute struct {
@@ -53,7 +67,7 @@ var errLinkScope = errors.New("outside the link's scope")
 
 // linkAllows reports whether a link token with these scopes may make this request.
 func linkAllows(scopes []string, r *http.Request) bool {
-	if portable.LinkAllows(scopes, r) {
+	if portable.LinkAllows(scopes, r) || capabilities.LinkAllows(scopes, r) {
 		return true
 	}
 	for _, lr := range linkRoutes {
